@@ -3,7 +3,7 @@ package com.pls.cms.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class PurchaseDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -11,18 +11,7 @@ public class User implements Serializable {
     private String lastname;
     private String email;
     private String contact;
-    private String password;
-    private String role;
-    private String gender;
     private String address;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -56,22 +45,6 @@ public class User implements Serializable {
         this.contact = contact;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -79,5 +52,4 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }
