@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b85ee326-235b-4212-9f8f-038baee0d2d7" name="Changes" comment="" />
+    <list default="true" id="aa7cce6d-ef3f-4de5-b8ed-86993a0875c4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +68,6 @@
         </TomcatInfo>
       </option>
       <option name="vmOptions" value="" />
-      <module name="cms" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
