@@ -17,6 +17,16 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/adminlogin</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CarSearchServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.CarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CarSearchServlet</servlet-name>
+        <url-pattern>/searchCar</url-pattern>
+    </servlet-mapping>
+
 
     <!--  <resource-ref>-->
     <!--    <description>MySQL DataSource</description>-->

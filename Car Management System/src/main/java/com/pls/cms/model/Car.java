@@ -10,7 +10,7 @@ public class Car implements Serializable {
     private String carType;
     private String description;
     private String brand;
-    private String model;
+    private int model;
     private String price;
 
     public String getCarId() {
@@ -53,11 +53,11 @@ public class Car implements Serializable {
         this.brand = brand;
     }
 
-    public String getModel() {
+    public int getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(int model) {
         this.model = model;
     }
 
