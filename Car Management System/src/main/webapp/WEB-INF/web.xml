@@ -4,4 +4,21 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>PurchaseDetailsServlet</servlet-name>
+    <servlet-class>com.pls.cms.servlet.PurchaseDetailsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PurchaseDetailsServlet</servlet-name>
+    <url-pattern>/purchaseCar</url-pattern>
+  </servlet-mapping>
+
+  <resource-ref>
+    <description>MySQL DataSource</description>
+    <res-ref-name>jdbc/cmsDB</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>

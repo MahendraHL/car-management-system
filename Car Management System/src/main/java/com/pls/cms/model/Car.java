@@ -5,19 +5,19 @@ import java.io.Serializable;
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String carId;
+    private Integer carId;
     private String carName;
     private String carType;
     private String description;
     private String brand;
-    private int model;
+    private String model;
     private String price;
 
-    public String getCarId() {
+    public Integer getCarId() {
         return carId;
     }
 
-    public void setCarId(String carId) {
+    public void setCarId(Integer carId) {
         this.carId = carId;
     }
 
@@ -53,11 +53,11 @@ public class Car implements Serializable {
         this.brand = brand;
     }
 
-    public int getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(int model) {
+    public void setModel(String model) {
         this.model = model;
     }
 
