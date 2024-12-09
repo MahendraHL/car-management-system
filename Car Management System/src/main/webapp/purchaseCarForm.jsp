@@ -54,14 +54,14 @@
         <form action="purchaseCar" method="post">
 
             <div class="form-group">
-                <label for="name">FirstName:</label>
-                <input type="text" id="name" name="firstname" placeholder="Enter your firstname" required>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
             </div>
 
-             <div class="form-group">
-                <label for="name">LastName:</label>
-                <input type="text" id="name" name="lastname" placeholder="Enter your lastname" required>
-             </div>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
+            </div>
 
             <div class="form-group">
                 <label for="email">Email Address:</label>
@@ -69,20 +69,20 @@
             </div>
 
             <div class="form-group">
-                            <label for="contact">Phone no:</label>
-                            <input type="text" id="contact" name="contact" placeholder="Enter your phone number" required>
-                        </div>
+                <label for="contact">Phone No:</label>
+                <input type="text" id="contact" name="contact" placeholder="Enter your phone number" required>
+            </div>
 
             <div class="form-group">
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" placeholder="Enter your address" required>
             </div>
 
-             <div class="form-group">
-                            <label for="carId">Car ID:</label>
-                            <input type="number" id="carId" name="carId" placeholder="Enter the car ID" required>
-                        </div>
-
+            <!-- Pre-fill the carId from the URL -->
+            <div class="form-group">
+                <label for="carId">Car ID:</label>
+                <input type="number" id="carId" name="carId" value="<%= request.getParameter("carId") != null ? request.getParameter("carId") : "" %>" readonly>
+            </div>
 
             <div class="form-group">
                 <button type="submit">Submit</button>
