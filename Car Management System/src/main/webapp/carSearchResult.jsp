@@ -108,7 +108,7 @@
                    <td><%= car.getDescription() %></td> <!-- Correctly display Description -->
                    <td><%= car.getPrice() %></td>
                    <td>
-                       <a href="purchase?carId=<%= car.getCarId() %>">
+                       <a href="purchaseCarForm.jsp?carId=<%= car.getCarId() %>">
                            <button>Purchase</button>
                        </a>
                    </td>
