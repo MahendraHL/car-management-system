@@ -13,6 +13,19 @@ public class Car implements Serializable {
     private String model;
     private String price;
 
+<<<<<<< HEAD
+=======
+    public Car(Integer carId, String carName, String carType, String description, String brand, String model, String price) {
+        this.carId = carId;
+        this.carName = carName;
+        this.carType = carType;
+        this.description = description;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+
+>>>>>>> cb040c79ad6c5cdefa72e141f86a0ba54af6d57d
     public Integer getCarId() {
         return carId;
     }
