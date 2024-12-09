@@ -13,6 +13,27 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+         /* Styling the login button */
+                .login-btn {
+                    position: fixed; /* Fixed to the top-right corner */
+                    top: 10px;
+                    right: 10px;
+                    padding: 10px 20px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .login-btn:hover {
+                    background-color: #45a049;
+                }
+
+                /* Add margin to the page content to make space for the button */
+                .content {
+                    margin-top: 60px; /* Adjust this based on the height of the button */
+                }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -44,6 +65,10 @@
 </head>
 <body>
 
+ <a href="AdminLogin.jsp">
+        <button class="login-btn">Login</button>
+    </a>
+
     <h1>Search Cars</h1>
 
     <!-- Search Form -->
@@ -62,6 +87,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Car Id</th>
                     <th>Car Name</th>
                     <th>Model</th>
                     <th>Brand</th>
@@ -74,6 +100,7 @@
             <tbody>
                 <% for (Car car : cars) { %>
                     <tr>
+                        <td><%= car.getCarId() %></td>
                         <td><%= car.getCarName() %></td>
                         <td><%= car.getModel() %></td>
                         <td><%= car.getBrand() %></td>
