@@ -9,6 +9,7 @@
     <display-name>Archetype Created Web Application</display-name>
 
 
+
     <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>com.pls.cms.servlet.UserServlet</servlet-class>
@@ -26,6 +27,8 @@
         <servlet-name>CarSearchServlet</servlet-name>
         <url-pattern>/searchCar</url-pattern>
     </servlet-mapping>
+
+
 
 
     <!--  <resource-ref>-->
