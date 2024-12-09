@@ -83,39 +83,40 @@
         List<Car> cars = (List<Car>) request.getAttribute("cars");
         if (cars != null && !cars.isEmpty()) {
     %>
-        <h2>Search Results</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Car Id</th>
-                    <th>Car Name</th>
-                    <th>Model</th>
-                    <th>Brand</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Car Type</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (Car car : cars) { %>
-                    <tr>
-                        <td><%= car.getCarId() %></td>
-                        <td><%= car.getCarName() %></td>
-                        <td><%= car.getModel() %></td>
-                        <td><%= car.getBrand() %></td>
-                        <td><%= car.getDescription() %></td>
-                        <td><%= car.getPrice() %></td>
-                        <td><%= car.getCarType() %></td>
-                        <td>
-                            <a href="purchase?carId=<%= car.getCarId() %>">
-                                <button>Purchase</button>
-                            </a>
-                        </td>
-                    </tr>
-                <% } %>
-            </tbody>
-        </table>
+   <h2>Search Results</h2>
+   <table>
+       <thead>
+           <tr>
+               <th>Car Id</th>
+               <th>Car Name</th>
+               <th>Model</th>
+               <th>Brand</th>
+               <th>Car Type</th> <!-- Car Type Column -->
+               <th>Description</th> <!-- Description Column -->
+               <th>Price</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+           <% for (Car car : cars) { %>
+               <tr>
+                   <td><%= car.getCarId() %></td>
+                   <td><%= car.getCarName() %></td>
+                   <td><%= car.getModel() %></td>
+                   <td><%= car.getBrand() %></td>
+                   <td><%= car.getCarType() %></td> <!-- Correctly display Car Type -->
+                   <td><%= car.getDescription() %></td> <!-- Correctly display Description -->
+                   <td><%= car.getPrice() %></td>
+                   <td>
+                       <a href="purchase?carId=<%= car.getCarId() %>">
+                           <button>Purchase</button>
+                       </a>
+                   </td>
+               </tr>
+           <% } %>
+       </tbody>
+   </table>
+
     <%
         } else {
     %>

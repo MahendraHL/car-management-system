@@ -33,14 +33,15 @@ public class CarDaoImpl implements CarDao {
                 // Iterate over the results and map them to Car objects
                 while (rs.next()) {
                     Car resultCar = new Car(
-                            rs.getInt("car_id"),      // Correct column name: "car_id"
+                            rs.getInt("car_id"),
                             rs.getString("carname"),
-                            rs.getString("description"),
-                            rs.getString("carType"),
+                            rs.getString("carType"),  // Make sure you're getting the car type
+                            rs.getString("description"), // Make sure you're getting the description
                             rs.getString("brand"),
                             rs.getString("model"),
                             rs.getString("price")
                     );
+
                     cars.add(resultCar);
                 }
             }
