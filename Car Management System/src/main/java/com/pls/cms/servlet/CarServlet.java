@@ -21,22 +21,13 @@ public class CarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String carName = req.getParameter("carName");
-        String model = req.getParameter("model");
-        String brand = req.getParameter("brand");
+        String searchTerm = req.getParameter("searchTerm");
 
-        Car car = new Car();
-        if(carName != null && !carName.isEmpty()){
-            car.setCarName(carName);
-        }
-        if (model != null && !model.isEmpty()) {
-            car.setModel(model);
-        }
-        if (brand != null && !brand.isEmpty()) {
-            car.setBrand(brand);
-        }
-        List<Car> cars = carDao.searchCar(car);
+        // Fetch cars based on the search term
+        List<Car> cars = carDao.searchCar(searchTerm != null ? searchTerm : "");
+
+        // Set the search results as an attribute and forward to car.jsp
         req.setAttribute("cars", cars);
-        req.getRequestDispatcher("/WEB-INF/car.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/carSearchResult.jsp").forward(req, resp);
     }
 }

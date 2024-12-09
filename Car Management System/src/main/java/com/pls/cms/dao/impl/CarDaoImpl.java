@@ -4,62 +4,52 @@ import com.pls.cms.dao.CarDao;
 import com.pls.cms.model.Car;
 import com.pls.cms.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarDaoImpl implements CarDao {
-
     @Override
-    public List<Car> searchCar(Car car) {
+    public List<Car> searchCar(String searchTerm) {
         List<Car> cars = new ArrayList<>();
-       StringBuilder sql = new StringBuilder("SELECT * FROM Car WHERE 1=1");
 
-       if(car.getCarName() != null && car.getCarName().isEmpty()){
-           sql.append(" AND carname LIKE ?");
-       }
+        if (searchTerm == null || searchTerm.trim().isEmpty()) {
+            return cars;
+        }
 
-       if(car.getModel() != null && car.getModel().isEmpty()){
-           sql.append("  AND model LIKE ?");
-       }
+        // SQL query with LIKE operators for carname, model, and brand
+        String sql = "SELECT * FROM Car WHERE carname LIKE ? OR model LIKE ? OR brand LIKE ?";
 
-       if(car.getBrand() != null && car.getBrand().isEmpty()){
-           sql.append(" AND brand LIKE ?");
-       }
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-       try(Connection connection = DBUtil.getConnection();
-           PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+            // Prepare search term with wildcards for partial matching
+            String searchPattern = "%" + searchTerm + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
 
-           int index =1;
-           if(car.getCarName() != null && !car.getCarName().isEmpty()){
-               stmt.setString(index++, "%" + car.getCarName() + "%");
-           }
-           if(car.getModel() != null && !car.getModel().isEmpty()){
-               stmt.setString(index++, "%" + car.getModel() + "%");
-           }
-           if(car.getBrand() != null && !car.getBrand().isEmpty()){
-               stmt.setString(index++, "%" + car.getBrand() + "%");
-           }
-           try(ResultSet rs = stmt.executeQuery()){
-               while (rs.next()){
-                   Car resultCar = new Car(
-                           rs.getInt("carId"),
-                           rs.getString("carname"),
-                           rs.getString("model"),
-                           rs.getString("brand"),
-                           rs.getString("description"),
-                           rs.getString("price"),
-                           rs.getString("carType")
-                   );
-                   cars.add(resultCar);
-               }
-           }
-       } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
-       return cars;
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Iterate over the results and map them to Car objects
+                while (rs.next()) {
+                    Car resultCar = new Car(
+                            rs.getInt("car_id"),      // Correct column name: "car_id"
+                            rs.getString("carname"),
+                            rs.getString("description"),
+                            rs.getString("carType"),
+                            rs.getString("brand"),
+                            rs.getString("model"),
+                            rs.getString("price")
+                    );
+                    cars.add(resultCar);
+                }
+            }
+        } catch (SQLException e) {
+            // Log the exception for debugging
+            e.printStackTrace();
+            throw new RuntimeException("Error while searching for cars", e);
+        }
+
+        return cars;
     }
 }
