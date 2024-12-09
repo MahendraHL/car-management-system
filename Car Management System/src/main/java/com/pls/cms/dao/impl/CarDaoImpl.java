@@ -18,7 +18,7 @@ public class CarDaoImpl implements CarDao {
         }
 
         // SQL query with LIKE operators for carname, model, and brand
-        String sql = "SELECT * FROM Car WHERE carname LIKE ? OR model LIKE ? OR brand LIKE ?";
+        String sql = "SELECT * FROM car WHERE carname LIKE ? OR model LIKE ? OR brand LIKE ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {

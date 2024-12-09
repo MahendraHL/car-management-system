@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String carId;
+    private Integer carId;
     private String carName;
     private String carType;
     private String description;
@@ -13,11 +13,21 @@ public class Car implements Serializable {
     private String model;
     private String price;
 
-    public String getCarId() {
+    public Car(Integer carId, String carName, String carType, String description, String brand, String model, String price) {
+        this.carId = carId;
+        this.carName = carName;
+        this.carType = carType;
+        this.description = description;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+
+    public Integer getCarId() {
         return carId;
     }
 
-    public void setCarId(String carId) {
+    public void setCarId(Integer carId) {
         this.carId = carId;
     }
 

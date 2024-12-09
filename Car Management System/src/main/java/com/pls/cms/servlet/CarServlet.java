@@ -28,6 +28,6 @@ public class CarServlet extends HttpServlet {
 
         // Set the search results as an attribute and forward to car.jsp
         req.setAttribute("cars", cars);
-        req.getRequestDispatcher("/WEB-INF/views/carSearchResult.jsp").forward(req, resp);
+        req.getRequestDispatcher("/carSearchResult.jsp").forward(req, resp);
     }
 }

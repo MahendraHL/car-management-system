@@ -32,7 +32,7 @@ public class UserServlet extends HttpServlet {
         out.println("<html><body>");
 
         User admin = adminDAO.getAdminByUsername(email);
-        if (admin.getRole()=="admin"){
+        if (admin.getRole().equalsIgnoreCase("admin")){
             if (admin != null && BCrypt.checkpw(password, admin.getPassword())) {
                 out.println("<h2>Welcome, " + email + "!</h2>");
                 System.out.println("------------------------------- email "+email);

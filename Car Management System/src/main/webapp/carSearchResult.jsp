@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.pls.cms.model.Car" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.pls.cms.model.Car" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +48,16 @@
 
     <!-- Search Form -->
     <form action="searchCar" method="get">
-        <input type="text" name="searchTerm" placeholder="Search by car name, model or brand" value="${param.searchTerm}" />
-        <button type="submit">Search</button>
+         <input type="text" name="searchTerm" placeholder="Search by car name, model or brand"
+                   value="<%= (request.getParameter("searchTerm") != null) ? request.getParameter("searchTerm") : "" %>" />
+            <button type="submit">Search</button>
     </form>
 
     <!-- Displaying Search Results -->
-    <c:if test="${not empty cars}">
+    <%
+        List<Car> cars = (List<Car>) request.getAttribute("cars");
+        if (cars != null && !cars.isEmpty()) {
+    %>
         <h2>Search Results</h2>
         <table>
             <thead>
@@ -69,30 +72,30 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="car" items="${cars}">
+                <% for (Car car : cars) { %>
                     <tr>
-                        <td>${car.carName}</td>
-                        <td>${car.model}</td>
-                        <td>${car.brand}</td>
-                        <td>${car.description}</td>
-                        <td>${car.price}</td>
-                        <td>${car.carType}</td>
+                        <td><%= car.getCarName() %></td>
+                        <td><%= car.getModel() %></td>
+                        <td><%= car.getBrand() %></td>
+                        <td><%= car.getDescription() %></td>
+                        <td><%= car.getPrice() %></td>
+                        <td><%= car.getCarType() %></td>
                         <td>
-                            <!-- Purchase Button with link to the purchase page -->
-                            <a href="purchase?carId=${car.carId}">
+                            <a href="purchase?carId=<%= car.getCarId() %>">
                                 <button>Purchase</button>
                             </a>
                         </td>
                     </tr>
-                </c:forEach>
+                <% } %>
             </tbody>
         </table>
-    </c:if>
-
-    <!-- No Cars Found Message -->
-    <c:if test="${empty cars}">
+    <%
+        } else {
+    %>
         <p>No cars found based on your search criteria.</p>
-    </c:if>
+    <%
+        }
+    %>
 
 </body>
 </html>
