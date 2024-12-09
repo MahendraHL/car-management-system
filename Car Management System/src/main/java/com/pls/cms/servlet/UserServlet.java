@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
                 System.out.println("------------------------------- email "+email);
 
             } else {
-                out.println("<h2>Error: Username and password are required!</h2>");
+                out.println("<h2>Error: Username and password are not match!</h2>");
             }
         }else {
             out.println("<h2>Error: User is not an admin!</h2>");
