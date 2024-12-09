@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface CarDao {
 
-    public List<Car> searchCar(Car car);
+
+
+    List<Car> searchCar(String searchTerm);
 }
