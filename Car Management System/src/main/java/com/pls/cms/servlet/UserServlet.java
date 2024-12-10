@@ -16,8 +16,6 @@ public class UserServlet extends HttpServlet {
 
     private UserDaoo adminDAO = new UserDaoImpl();
 
-
-
     @Override
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,15 +30,15 @@ public class UserServlet extends HttpServlet {
         out.println("<html><body>");
 
         User admin = adminDAO.getAdminByUsername(email);
-        if (admin.getRole().equalsIgnoreCase("admin")){
+        if (admin.getRole().equalsIgnoreCase("admin")) {
             if (admin != null && BCrypt.checkpw(password, admin.getPassword())) {
                 out.println("<h2>Welcome, " + email + "!</h2>");
-                System.out.println("------------------------------- email "+email);
+                System.out.println("------------------------------- email " + email);
 
             } else {
                 out.println("<h2>Error: Username and password are not match!</h2>");
             }
-        }else {
+        } else {
             out.println("<h2>Error: User is not an admin!</h2>");
         }
 
