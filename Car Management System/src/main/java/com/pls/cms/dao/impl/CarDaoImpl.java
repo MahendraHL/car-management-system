@@ -10,6 +10,26 @@ import java.util.List;
 
 public class CarDaoImpl implements CarDao {
     @Override
+    public void addCar(Car car) {
+        String sql = "INSERT INTO car (car_id, carname, carType, description, brand, model, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, car.getCarId());
+            stmt.setString(2, car.getCarName());
+            stmt.setString(3, car.getCarType());
+            stmt.setString(4, car.getDescription());
+            stmt.setString(5, car.getBrand());
+            stmt.setString(6, car.getModel());
+            stmt.setString(7, car.getPrice());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while adding a new car", e);
+        }
+    }
+    @Override
     public List<Car> searchCar(String searchTerm) {
         List<Car> cars = new ArrayList<>();
 

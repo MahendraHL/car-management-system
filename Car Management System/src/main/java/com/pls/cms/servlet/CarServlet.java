@@ -30,4 +30,37 @@ public class CarServlet extends HttpServlet {
         req.setAttribute("cars", cars);
         req.getRequestDispatcher("/carSearchResult.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            Integer carId = Integer.parseInt(req.getParameter("carId"));
+            String carname = req.getParameter("carname");
+            String carType = req.getParameter("carType");
+            String description = req.getParameter("description");
+            String brand = req.getParameter("brand");
+            String model = req.getParameter("model");
+            String price = req.getParameter("price");
+
+            // Create a new car object
+            Car newCar = new Car(carId, carname, carType, description, brand, model, price);
+
+            // Add the car to the database
+            carDao.addCar(newCar);
+
+            // Set a success message as a request attribute
+            req.setAttribute("message", "Car added successfully!");
+            req.setAttribute("messageType", "success");
+
+        } catch (Exception e) {
+            // In case of any errors, set an error message
+            req.setAttribute("message", "Failed to add car. Please try again.");
+            req.setAttribute("messageType", "error");
+            e.printStackTrace();  // Log the exception for debugging purposes
+        }
+
+        // Forward to the car.jsp page to display the message
+        req.getRequestDispatcher("/car.jsp").forward(req, resp);
+    }
+
 }
