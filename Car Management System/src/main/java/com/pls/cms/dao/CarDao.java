@@ -10,4 +10,7 @@ public interface CarDao {
 
 
     List<Car> searchCar(String searchTerm);
+    void addCar(Car car);
+
+
 }
