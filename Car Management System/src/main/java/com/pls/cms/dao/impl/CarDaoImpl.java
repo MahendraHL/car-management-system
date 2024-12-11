@@ -83,7 +83,7 @@ public class CarDaoImpl implements CarDao {
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
-             ) {
+        ) {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -106,4 +106,35 @@ public class CarDaoImpl implements CarDao {
         }
         return cars;
     }
+
+    @Override
+    public String deleteCar(Integer carId) {
+        String sql = "DELETE FROM car WHERE car_id = ?";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Set the carId as the first parameter in the PreparedStatement
+            stmt.setInt(1, carId);
+
+            // Execute the DELETE statement
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Car deleted successfully");
+            } else {
+                System.out.println("No car found with the given ID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if (e.getMessage().contains("foreign key constraint fails")) {
+                return "This car has already been purchased or is linked to another entity.";
+            } else {
+                e.printStackTrace();
+                return "Error deleting car.";
+            }
+        }
+        return null;
+    }
+
 }
