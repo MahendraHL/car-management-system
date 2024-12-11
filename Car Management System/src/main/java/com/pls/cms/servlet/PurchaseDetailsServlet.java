@@ -25,7 +25,7 @@ public class PurchaseDetailsServlet extends HttpServlet {
             // Parse carId as Integer
             Integer carId = null;
             if (carIdStr != null && !carIdStr.trim().isEmpty()) {
-                carId = Integer.parseInt(carIdStr.trim());
+                carId = (Integer) Integer.parseInt(carIdStr.trim());
             }
 
             // Create PurchaseDetails object

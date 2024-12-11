@@ -48,4 +48,13 @@
         <url-pattern>/addCar</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CarResultServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.CarResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CarResultServlet</servlet-name>
+        <url-pattern>/viewAllCars</url-pattern>
+    </servlet-mapping>
+
 </web-app>
