@@ -13,7 +13,7 @@ public class Car implements Serializable {
     private String model;
     private String price;
 
-    public Car(Integer carId, String carName, String carType, String description, String brand, String model, String price) {
+    public Car(int carId, String carName, String carType, String description, String brand, String model, String price) {
         this.carId = carId;
         this.carName = carName;
         this.carType = carType;

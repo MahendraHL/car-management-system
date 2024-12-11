@@ -13,4 +13,5 @@ public interface CarDao {
     void addCar(Car car);
 
 
+    List<Car> getAllCars();
 }

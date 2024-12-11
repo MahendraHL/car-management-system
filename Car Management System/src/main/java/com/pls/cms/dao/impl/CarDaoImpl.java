@@ -29,6 +29,7 @@ public class CarDaoImpl implements CarDao {
             throw new RuntimeException("Error while adding a new car", e);
         }
     }
+
     @Override
     public List<Car> searchCar(String searchTerm) {
         List<Car> cars = new ArrayList<>();
@@ -71,6 +72,38 @@ public class CarDaoImpl implements CarDao {
             throw new RuntimeException("Error while searching for cars", e);
         }
 
+        return cars;
+    }
+
+
+    @Override
+    public List<Car> getAllCars() {
+        List<Car> cars = new ArrayList<>();
+        String sql = "SELECT * FROM car";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql);
+             ) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Car car = new Car(
+                        rs.getInt("car_id"),
+                        rs.getString("carname"),
+                        rs.getString("carType"),
+                        rs.getString("description"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("price")
+                );
+                cars.add(car);
+            }
+
+            System.out.println("Cars retrieved: " + cars.size()); // Debug log
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving cars", e);
+        }
         return cars;
     }
 }
