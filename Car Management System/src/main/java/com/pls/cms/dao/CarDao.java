@@ -14,4 +14,6 @@ public interface CarDao {
 
 
     List<Car> getAllCars();
+
+    String deleteCar(Integer carId);
 }

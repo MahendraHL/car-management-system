@@ -57,4 +57,14 @@
         <url-pattern>/viewAllCars</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.DeleteCarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <url-pattern>/deleteCar</url-pattern>
+    </servlet-mapping>
+
 </web-app>
