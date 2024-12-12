@@ -165,10 +165,10 @@
                     <td><%= car.getPrice() %></td>
                     <td>
                         <!-- Edit Car Button -->
-                        <form action="editcar.jsp" method="get" style="display:inline;">
-                            <input type="hidden" name="carId" value="<%= car.getCarId() %>">
-                            <button type="submit">Edit</button>
-                        </form>
+                       <a href="editcar.jsp?carId=<%= car.getCarId() %>&carName=<%= car.getCarName() %>&model=<%= car.getModel() %>&brand=<%= car.getBrand() %>&carType=<%= car.getCarType() %>&description=<%= car.getDescription() %>&price=<%= car.getPrice() %>">
+                          <button>Edit</button>
+                      </a>
+
                         <!-- Delete Car Button -->
                         <form action="deleteCar" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');" style="display:inline;">
                             <input type="hidden" name="carId" value="<%= car.getCarId() %>">

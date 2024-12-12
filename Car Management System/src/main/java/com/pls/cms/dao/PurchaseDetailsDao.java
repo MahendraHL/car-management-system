@@ -4,5 +4,5 @@ import com.pls.cms.model.PurchaseDetails;
 
 public interface PurchaseDetailsDao {
 
-public void insertPurchaseDetails(PurchaseDetails purchaseDetails);
+    public void insertPurchaseDetails(PurchaseDetails purchaseDetails);
 }

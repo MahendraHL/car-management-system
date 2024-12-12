@@ -17,7 +17,6 @@ public class CarResultServlet extends HttpServlet {
 
         List<Car> getCars;
             CarDao carDAO = new CarDaoImpl();
-                // Fetch all cars if no search term is provided
         getCars = carDAO.getAllCars();
                 request.setAttribute("getCars", getCars);
 
