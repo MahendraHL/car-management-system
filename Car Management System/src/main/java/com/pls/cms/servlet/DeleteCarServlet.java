@@ -4,7 +4,6 @@ import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
 import com.pls.cms.service.CarDetailsService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +26,7 @@ public class DeleteCarServlet extends HttpServlet {
         String message = carDetailsService.deleteCarDetails(carId);
 
         List<Car> remainingCars = carDetailsService.getCarInfo();
+
         req.setAttribute("getCars", remainingCars);
         req.setAttribute("deleteMessage", message);
         req.getRequestDispatcher("/viewcars.jsp").forward(req, resp);

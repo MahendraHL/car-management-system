@@ -48,4 +48,33 @@
         <url-pattern>/addCar</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CarResultServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.CarResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CarResultServlet</servlet-name>
+        <url-pattern>/viewAllCars</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ModifyCarServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.ModifyCarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ModifyCarServlet</servlet-name>
+        <url-pattern>/updateCar</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <servlet-class>com.pls.cms.servlet.DeleteCarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <url-pattern>/deleteCar</url-pattern>
+    </servlet-mapping>
+
 </web-app>

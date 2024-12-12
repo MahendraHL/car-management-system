@@ -4,7 +4,6 @@ import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
 import com.pls.cms.service.CarDetailsService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,14 +26,14 @@ public class ModifyCarServlet extends HttpServlet {
         String price = request.getParameter("price");
 
         Car car = new Car(carId, carName, carType, description, brand, model, price);
-
+      
         carDetailsService.updateCarDetails(car);
 
         // Redirect to viewcars.jsp after successful update
       //  response.sendRedirect("viewcars.jsp");
-
-
+      
         List<Car> remainingCars = carDetailsService.getCarInfo();
+
         request.setAttribute("getCars", remainingCars);
         request.getRequestDispatcher("/viewcars.jsp").forward(request, response);
     }

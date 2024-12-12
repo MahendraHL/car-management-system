@@ -4,7 +4,6 @@ import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
 import com.pls.cms.service.CarDetailsService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +18,9 @@ public class CarResultServlet extends HttpServlet {
         CarDetailsService carDetailsService = new CarDetailsService();
         List<Car> getCars;
         getCars = carDetailsService.getCarInfo();
+
                 request.setAttribute("getCars", getCars);
 
             request.getRequestDispatcher("viewcars.jsp").forward(request, response);
-
     }
 }
