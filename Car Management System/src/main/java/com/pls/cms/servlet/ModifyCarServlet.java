@@ -3,7 +3,7 @@ package com.pls.cms.servlet;
 import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
-
+import com.pls.cms.service.CarDetailsService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ModifyCarServlet extends HttpServlet {
 
-    private CarDao carDao = new CarDaoImpl();
+    private CarDetailsService carDetailsService = new CarDetailsService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,13 +26,14 @@ public class ModifyCarServlet extends HttpServlet {
         String price = request.getParameter("price");
 
         Car car = new Car(carId, carName, carType, description, brand, model, price);
-        carDao.updateCar(car);
+      
+        carDetailsService.updateCarDetails(car);
 
         // Redirect to viewcars.jsp after successful update
       //  response.sendRedirect("viewcars.jsp");
+      
+        List<Car> remainingCars = carDetailsService.getCarInfo();
 
-
-        List<Car> remainingCars = carDao.getAllCars();
         request.setAttribute("getCars", remainingCars);
         request.getRequestDispatcher("/viewcars.jsp").forward(request, response);
     }

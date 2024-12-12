@@ -3,7 +3,7 @@ package com.pls.cms.servlet;
 import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
-
+import com.pls.cms.service.CarDetailsService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +17,16 @@ public class DeleteCarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String carIdStr = req.getParameter("carId");
 
-       Integer carId = (Integer) Integer.parseInt(carIdStr.trim());
+        Integer carId =Integer.parseInt(carIdStr.trim());
 
         System.out.println(carId);
 
-        CarDao car = new CarDaoImpl();
+        CarDetailsService carDetailsService = new CarDetailsService();
 
-       String message =car.deleteCar(carId);
+        String message = carDetailsService.deleteCarDetails(carId);
 
-        List<Car> remainingCars = car.getAllCars();
+        List<Car> remainingCars = carDetailsService.getCarInfo();
+
         req.setAttribute("getCars", remainingCars);
         req.setAttribute("deleteMessage", message);
         req.getRequestDispatcher("/viewcars.jsp").forward(req, resp);
