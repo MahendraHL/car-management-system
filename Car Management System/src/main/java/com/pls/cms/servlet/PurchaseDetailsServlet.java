@@ -2,6 +2,7 @@ package com.pls.cms.servlet;
 
 import com.pls.cms.dao.impl.PurchaseDetailsImpl;
 import com.pls.cms.model.PurchaseDetails;
+import com.pls.cms.service.CarDetailsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class PurchaseDetailsServlet extends HttpServlet {
+
+    private CarDetailsService carDetailsService = new CarDetailsService();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -33,7 +37,7 @@ public class PurchaseDetailsServlet extends HttpServlet {
 
             // Save to database
             PurchaseDetailsImpl dao = new PurchaseDetailsImpl();
-            dao.insertPurchaseDetails(purchaseDetails);
+            carDetailsService.isCarPurchased(purchaseDetails);
 
             // Forward to thank you page
             req.setAttribute("message", "Thank you for your details!");

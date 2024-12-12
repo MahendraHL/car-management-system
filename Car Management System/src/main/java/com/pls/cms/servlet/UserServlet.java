@@ -3,6 +3,7 @@ package com.pls.cms.servlet;
 import com.pls.cms.dao.UserDaoo;
 import com.pls.cms.dao.impl.UserDaoImpl;
 import com.pls.cms.model.User;
+import com.pls.cms.service.CarDetailsService;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,8 @@ import java.io.PrintWriter;
 
 public class UserServlet extends HttpServlet {
 
-    private UserDaoo adminDAO = new UserDaoImpl();
+
+    private CarDetailsService carDetailsService = new CarDetailsService();
 
     @Override
 
@@ -30,12 +32,11 @@ public class UserServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        User admin = adminDAO.getAdminByUsername(email);
+        User admin = carDetailsService.isAdmin(email);
         if (admin.getRole().equalsIgnoreCase("admin")) {
             if (admin != null && BCrypt.checkpw(password, admin.getPassword())) {
 
                 response.sendRedirect(request.getContextPath() + "/home.jsp");
-                System.out.println("------------------------------- email "+email);
 
             } else {
                 out.println("<h2>Error: Username and password are not match!</h2>");

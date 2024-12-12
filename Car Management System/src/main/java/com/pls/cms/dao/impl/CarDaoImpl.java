@@ -23,7 +23,8 @@ public class CarDaoImpl implements CarDao {
             stmt.setString(6, car.getModel());
             stmt.setString(7, car.getPrice());
 
-            stmt.executeUpdate();
+            int i = stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error while adding a new car", e);

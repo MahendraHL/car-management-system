@@ -3,6 +3,7 @@ package com.pls.cms.servlet;
 import com.pls.cms.dao.CarDao;
 import com.pls.cms.dao.impl.CarDaoImpl;
 import com.pls.cms.model.Car;
+import com.pls.cms.service.CarDetailsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,8 @@ public class CarServlet extends HttpServlet {
         String searchTerm = req.getParameter("searchTerm");
 
         // Fetch cars based on the search term
-        List<Car> cars = carDao.searchCar(searchTerm != null ? searchTerm : "");
+        CarDetailsService carDetailsService = new CarDetailsService();
+        List<Car> cars = carDetailsService.searchCarInfo(searchTerm);
 
         // Set the search results as an attribute and forward to car.jsp
         req.setAttribute("cars", cars);
@@ -46,7 +48,8 @@ public class CarServlet extends HttpServlet {
             Car newCar = new Car(carId, carname, carType, description, brand, model, price);
 
             // Add the car to the database
-            carDao.addCar(newCar);
+            CarDetailsService carDetailsService = new CarDetailsService();
+            carDetailsService.addCarDetails(newCar);
 
             // Set a success message as a request attribute
             req.setAttribute("message", "Car added successfully!");
@@ -57,6 +60,8 @@ public class CarServlet extends HttpServlet {
             req.setAttribute("message", "Failed to add car. Please try again.");
             req.setAttribute("messageType", "error");
             e.printStackTrace();  // Log the exception for debugging purposes
+            //log
+
         }
 
         // Forward to the car.jsp page to display the message
