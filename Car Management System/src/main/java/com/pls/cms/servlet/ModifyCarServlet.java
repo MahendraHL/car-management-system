@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class ModifyCarServlet extends HttpServlet {
 
@@ -26,8 +27,13 @@ public class ModifyCarServlet extends HttpServlet {
 
         Car car = new Car(carId, carName, carType, description, brand, model, price);
         carDao.updateCar(car);
- 
+
         // Redirect to viewcars.jsp after successful update
-        response.sendRedirect("viewcars.jsp");
+      //  response.sendRedirect("viewcars.jsp");
+
+
+        List<Car> remainingCars = carDao.getAllCars();
+        request.setAttribute("getCars", remainingCars);
+        request.getRequestDispatcher("/viewcars.jsp").forward(request, response);
     }
 }

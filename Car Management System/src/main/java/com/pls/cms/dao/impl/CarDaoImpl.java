@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarDaoImpl implements CarDao {
+
     @Override
     public void addCar(Car car) {
         String sql = "INSERT INTO car (car_id, carname, carType, description, brand, model, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -127,6 +128,9 @@ public class CarDaoImpl implements CarDao {
             throw new RuntimeException("Error updating car details", e);
         }
 
+    }
+
+    @Override
     public String deleteCar(Integer carId) {
         String sql = "DELETE FROM car WHERE car_id = ?";
 

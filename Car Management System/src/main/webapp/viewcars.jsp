@@ -56,6 +56,7 @@
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s;
+            text-decoration: none;
         }
 
         td button:hover {
@@ -93,6 +94,7 @@
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none;
         }
 
         .action-buttons form button:hover {
@@ -108,6 +110,7 @@
             .action-buttons form input[type="text"] {
                 width: 100%;
                 padding: 10px;
+                text-decoration: none;
             }
 
             .action-buttons form button {
