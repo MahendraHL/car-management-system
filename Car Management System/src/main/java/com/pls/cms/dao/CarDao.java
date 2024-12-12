@@ -10,4 +10,6 @@ public interface CarDao {
     void addCar(Car car);
     List<Car> getAllCars();
     void updateCar(Car car);
+    String deleteCar(Integer carId);
+
 }
