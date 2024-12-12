@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface CarDao {
-
-
-
     List<Car> searchCar(String searchTerm);
     void addCar(Car car);
-
-
     List<Car> getAllCars();
+    void updateCar(Car car);
 }

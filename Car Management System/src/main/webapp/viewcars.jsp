@@ -151,11 +151,13 @@
                    <td><%= car.getCarType() %></td> <!-- Correctly display Car Type -->
                    <td><%= car.getDescription() %></td> <!-- Correctly display Description -->
                    <td><%= car.getPrice() %></td>
-                   <td>
-                       <!-- Edit Car Button -->
-                       <a href="editCarForm.jsp?carId=<%= car.getCarId() %>">
-                           <button>Edit</button>
-                       </a>
+                  <td>
+                      <!-- Edit Car Button -->
+                      <a href="editcar.jsp?carId=<%= car.getCarId() %>&carName=<%= car.getCarName() %>&model=<%= car.getModel() %>&brand=<%= car.getBrand() %>&carType=<%= car.getCarType() %>&description=<%= car.getDescription() %>&price=<%= car.getPrice() %>">
+                          <button>Edit</button>
+                      </a>
+
+
                        <!-- Delete Car Button -->
                        <a href="deleteCar?carId=<%= car.getCarId() %>" onclick="return confirm('Are you sure you want to delete this car?');">
                            <button>Delete</button>

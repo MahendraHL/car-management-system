@@ -106,4 +106,25 @@ public class CarDaoImpl implements CarDao {
         }
         return cars;
     }
+
+    @Override
+    public void updateCar(Car car) {
+        String sql = "UPDATE car SET carname = ?, carType = ?, description = ?, brand = ?, model = ?, price = ? WHERE car_id = ?";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, car.getCarName());
+            stmt.setString(2, car.getCarType());
+            stmt.setString(3, car.getDescription());
+            stmt.setString(4, car.getBrand());
+            stmt.setString(5, car.getModel());
+            stmt.setString(6, car.getPrice());
+            stmt.setInt(7, car.getCarId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating car details", e);
+        }
+    }
+
 }
